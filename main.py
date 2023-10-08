@@ -31,7 +31,8 @@ class NgramModel:
                 low_freq_words = [word for word, count in self.unigram_counts.items() if count <= self.threshold]
             elif self.unknown_handle == "top_k_vocab":
                 top_k = sorted(self.unigram_counts.items(), key=lambda x: x[1], reverse=True)[:self.top_k_vocab]
-                low_freq_words = [word for word, count in self.unigram_counts.items() if word not in top_k]
+                top_k_words = [word for word, _ in top_k]
+                low_freq_words = [word for word, count in self.unigram_counts.items() if word not in top_k_words]
 
             for word in low_freq_words:
                 self.unigram_counts["<UNK>"] += self.unigram_counts[word]
