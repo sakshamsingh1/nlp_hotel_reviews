@@ -111,6 +111,7 @@ def main():
         else:
             print("Bigram Probability of ('the', 'students'):", model.bigram_probability("the", "students"))
         if model.smoothing is not None:
+            print("Perplexity on training set:", model.perplexity("train.txt"))
             print("Perplexity on validation set:", model.perplexity("val.txt"))
         print()
 
